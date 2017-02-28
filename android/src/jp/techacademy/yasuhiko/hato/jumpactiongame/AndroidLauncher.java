@@ -20,6 +20,8 @@ public class AndroidLauncher extends AndroidApplication  implements ActivityRequ
 	private final int SHOW_ADS = 1;
 	private final int HIDE_ADS = 0;
 
+	private SoundManager mSoundManager;
+
 	protected Handler handler = new Handler()
 	{
 		@Override
@@ -67,6 +69,9 @@ public class AndroidLauncher extends AndroidApplication  implements ActivityRequ
 		layout.addView(mAdView, params);
 
 		setContentView(layout);
+
+		// for sound
+		mSoundManager = new SoundManager(this);
 	}
 
 	@Override
@@ -77,4 +82,30 @@ public class AndroidLauncher extends AndroidApplication  implements ActivityRequ
 			handler.sendEmptyMessage(HIDE_ADS);
 		}
 	}
+
+	@Override
+	public void playSoundJump(){
+		mSoundManager.playSoundJump();
+	}
+	@Override
+	public void playSoundStar() {
+		mSoundManager.playSoundStar();
+	}
+	@Override
+	public void playSoundDie() {
+		mSoundManager.playSoundDie();
+	}
+	@Override
+	public void startBgmFloating() {
+		mSoundManager.startBgmFloating();
+	}
+	@Override
+	public void startBgmClear() {
+		mSoundManager.startBgmClear();
+	}
+	@Override
+	public void stopBgm() {
+		mSoundManager.stopBgm();
+	}
+
 }

@@ -6,4 +6,11 @@ package jp.techacademy.yasuhiko.hato.jumpactiongame;
 
 public interface ActivityRequestHandler {
     public void showAds(boolean show);
+
+    public void playSoundJump();
+    public void playSoundStar();
+    public void playSoundDie();
+    public void startBgmFloating();
+    public void startBgmClear();
+    public void stopBgm();
 }
