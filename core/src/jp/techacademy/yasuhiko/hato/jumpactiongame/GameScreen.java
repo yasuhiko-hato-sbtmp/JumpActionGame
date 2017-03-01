@@ -196,7 +196,8 @@ public class GameScreen extends ScreenAdapter {
             }
 
             if(mRandom.nextFloat() > 0.8f){
-                Enemy enemy = new Enemy(enemyTexture, 0, 0, 72, 72);
+                //Enemy enemy = new Enemy(enemyTexture, 0, 0, 72, 72);
+                Enemy enemy = new Enemy(enemyTexture, 0, 0, 60, 60);
                 enemy.setPosition(x, y);
                 mEnemies.add(enemy);
             }
