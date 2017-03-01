@@ -76,7 +76,7 @@ public class SoundManager {
     }
     public void startBgmClear(){
         mMediaPlayer = MediaPlayer.create(mContext, R.raw.bgm_clear);
-        mMediaPlayer.setLooping(true);
+        //mMediaPlayer.setLooping(true);
         mMediaPlayer.start();
     }
     public void stopBgm(){
