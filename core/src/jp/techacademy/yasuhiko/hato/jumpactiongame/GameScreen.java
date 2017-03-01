@@ -142,7 +142,7 @@ public class GameScreen extends ScreenAdapter {
         // UFO
         mUfo.draw(mGame.batch);
 
-        // Enemies
+        // Enemy
         for (int i = 0; i < mEnemies.size(); i++) {
             mEnemies.get(i).draw(mGame.batch);
         }
@@ -193,6 +193,12 @@ public class GameScreen extends ScreenAdapter {
                 Star star = new Star(starTexture, 0, 0, 72, 72);
                 star.setPosition(step.getX() + mRandom.nextFloat(), step.getY() + Star.STAR_HEIGHT + mRandom.nextFloat() * 3);
                 mStars.add(star);
+            }
+
+            if(mRandom.nextFloat() > 0.8f){
+                Enemy enemy = new Enemy(enemyTexture, 0, 0, 72, 72);
+                enemy.setPosition(x, y);
+                mEnemies.add(enemy);
             }
 
             y += (maxJumpHeight - 0.5f);
@@ -251,6 +257,11 @@ public class GameScreen extends ScreenAdapter {
             mSteps.get(i).update(delta);
         }
 
+        // Enemy
+        for(int i = 0; i < mEnemies.size(); i++){
+            mEnemies.get(i).update(delta);
+        }
+
         // Player
         if (mPlayer.getY() <= 0.5f) {
             mPlayer.hitStep();
@@ -297,6 +308,18 @@ public class GameScreen extends ScreenAdapter {
                     mPrefs.flush();
                 }
                 break;
+            }
+        }
+
+        // Enemyとの当たり判定
+        for (int i = 0; i < mEnemies.size(); i++) {
+            Enemy enemy = mEnemies.get(i);
+
+            if (mPlayer.getBoundingRectangle().overlaps(enemy.getBoundingRectangle())) {
+                mGame.mRequestHandler.stopBgm();
+                mGame.mRequestHandler.playSoundDie(); // play sound
+                mGameState = GAME_STATE_GAMEOVER;
+                return;
             }
         }
 
